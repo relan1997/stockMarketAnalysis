@@ -1,0 +1,22 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Prediction Result</h1>
+      </header>
+      <main>
+        <p>For an opening price of <strong>{{ open_price }}</strong>, the predicted adjusted close price is <strong>{{ prediction }}</strong>.</p>
+        <div class="actions">
+          <button onclick="window.location.href='/predict'">Back to Prediction</button>
+          <button onclick="window.location.href='/'">Go to Home</button>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

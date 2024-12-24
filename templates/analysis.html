@@ -1,0 +1,63 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Analysis</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Stock Analysis Results</h1>
+      </header>
+      <main>
+        {% for plot in plots %}
+        <div class="plot-section">
+          <img src="data:image/png;base64,{{ plot }}" alt="Plot {{ loop.index }}" />
+          <div class="plot-description">
+            {% if loop.index0 == 0 %}
+            <h2>Adjusted Close Price Over Time</h2>
+            <p>
+              This chart shows the stock price over time, but with adjustments made for any special events like bonuses or stock splits. For example, if the company gives extra shares to shareholders or combines shares, the price is adjusted to reflect the real value. This adjusted price helps investors see the actual performance of the stock over time.
+              Understanding this is essential for comparing stocks fairly, especially when looking at long-term trends.
+            </p>
+            {% elif loop.index0 == 1 %}
+            <h2>Trading Volume Over Time</h2>
+            <p>
+              This chart shows how many shares were bought and sold on each day. A high trading volume means a lot of people are interested in the stock, while a low trading volume means fewer people are trading it. It can also highlight important days, like when a company announces big news, causing more people to trade the stock. Watching trading volume alongside price changes gives better insight into market activity.
+            </p>
+            {% elif loop.index0 == 2 %}
+            <h2>Moving Averages</h2>
+            <p>
+              Moving averages take the stock prices from several days (like 10, 20, or 50 days) and calculate the average. This helps smooth out the ups and downs to see a clear trend. For example, if the 10-day average is above the 50-day average, it might mean the stock is gaining value over time. Moving averages are commonly used to identify trends and predict where prices might go next.
+            </p>
+            {% elif loop.index0 == 3 %}
+            <h2>Relative Strength Index (RSI)</h2>
+            <p>
+              The RSI checks how strong the stock's recent price moves are. It compares days when the stock price went up to days it went down. If the RSI is above 80, it might mean the stock is too expensive because too many people are buying it. If it’s below 20, it might mean the stock is very cheap because a lot of people are selling it. RSI helps traders decide if they should buy or sell a stock based on these levels.
+            </p>
+            {% elif loop.index0 == 4 %}
+            <h2>MACD Analysis</h2>
+            <p>
+              The MACD (Moving Average Convergence Divergence) is a tool that looks at two moving averages of the stock price. It helps identify if the stock is gaining strength or losing it. For example, if the MACD line crosses above the signal line, it could mean the stock might go up. If it crosses below, it might go down. The MACD histogram shows how strong these signals are, helping traders spot changes in momentum early.
+            </p>
+            {% elif loop.index0 == 5 %}
+            <h2>On-Balance Volume (OBV)</h2>
+            <p>
+              The OBV measures how trading volume is related to price changes. If the stock price goes up and a lot of shares are traded, it means the upward trend is strong. If the price goes up but the volume is low, the trend might not last. OBV is useful for confirming trends, showing whether the trading activity supports the price movement or not.
+            </p>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </main>
+      <footer>
+        <div class="action-button">
+          <form action="/train" method="get">
+            <button type="submit" class="train-model-button">Train Model</button>
+          </form>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

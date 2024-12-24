@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Analysis</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Stock Analysis and Prediction</h1>
+      </header>
+      <main>
+        <section class="model-info">
+          <h2>Model Accuracy</h2>
+          <p>The accuracy of the trained Linear Regression model is:</p>
+          <ul>
+            <li>Train Score: <strong>{{ accuracy_train }}</strong></li>
+            <li>Test Score: <strong>{{ accuracy_test }}</strong></li>
+          </ul>
+        </section>
+        <section class="prediction-form">
+          <h2>Predict Adjusted Close Price</h2>
+          <form method="POST" action="/predict">
+            <label for="open_price">Enter Opening Price:</label>
+            <input type="number" id="open_price" name="open_price" step="0.01" required />
+            <button type="submit">Predict</button>
+          </form>
+        </section>
+        {% if prediction %}
+        <section class="prediction-result">
+          <h2>Prediction Result</h2>
+          <p>{{ prediction }}</p>
+        </section>
+        {% endif %}
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    background-color: #001f3f;
+    color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+main {
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #001f3f;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #001f3f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #00509e;
+}
+
+.plot-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.plot-container img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.plot-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.plot-section img {
+    flex: 1;
+    max-width: 60%;
+    border-right: 2px solid #ddd;
+}
+
+.plot-description {
+    flex: 1;
+    padding: 20px;
+}
+
+.plot-description h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #007acc;
+}
+
+.plot-description p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+}

@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data Fetcher</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Stock Data Fetcher</h1>
+        </header>
+        <main>
+            <form id="fetchForm" method="POST" action="/fetch_and_save">
+                <label for="ticker">Enter Stock Ticker Symbol:</label>
+                <input type="text" id="ticker" name="ticker" placeholder="e.g., AAPL" required>
+                <button type="submit">Fetch and Analyze</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
