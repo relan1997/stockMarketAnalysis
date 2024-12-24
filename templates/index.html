@@ -11,11 +11,52 @@
             <h1>Stock Data Fetcher</h1>
         </header>
         <main>
+            <!-- Fetch and Save Form -->
             <form id="fetchForm" method="POST" action="/fetch_and_save">
                 <label for="ticker">Enter Stock Ticker Symbol:</label>
                 <input type="text" id="ticker" name="ticker" placeholder="e.g., AAPL" required>
                 <button type="submit">Fetch and Analyze</button>
+                {% if fetch_error %}
+                    <p style="color: red;">{{ fetch_error }}</p>
+                {% endif %}
             </form>
+
+            <hr>
+
+            <!-- Search Companies Form -->
+            <form id="searchForm" method="POST" action="/search_companies">
+                <label for="search_query">Search for Companies:</label>
+                <input type="text" id="search_query" name="search_query" placeholder="Enter query" required>
+                <button type="submit">Search</button>
+                {% if search_error %}
+                    <p style="color: red;">{{ search_error }}</p>
+                {% endif %}
+            </form>
+
+            {% if companies %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Name</th>
+                            <th>Currency</th>
+                            <th>Stock Exchange</th>
+                            <th>Exchange Short Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for company in companies %}
+                            <tr>
+                                <td>{{ company.symbol }}</td>
+                                <td>{{ company.name }}</td>
+                                <td>{{ company.currency }}</td>
+                                <td>{{ company.stockExchange }}</td>
+                                <td>{{ company.exchangeShortName }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
         </main>
     </div>
 </body>

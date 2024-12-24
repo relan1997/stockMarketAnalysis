@@ -11,6 +11,11 @@ import base64
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import numpy as np
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
 
@@ -64,6 +69,31 @@ def fetch_data(url, csv_file):
         writer.writerow(["Date", "Open", "High", "Low", "Close", "Adjusted Close", "Volume"])
         for i in range(len(dates)):
             writer.writerow([dates[i], open_prices[i], high_prices[i], low_prices[i], close_prices[i], adj_close_prices[i], volumes[i]])
+
+@app.route('/search_companies', methods=['POST'])
+def search_companies():
+    query = request.form.get('search_query')
+    if not query:
+        return render_template('index.html', companies=[], fetch_error=None, search_error="Query is required")
+
+    api_url = f"https://financialmodelingprep.com/api/v3/search?query={query}&apikey={API_KEY}"
+    response = requests.get(api_url)
+
+    if response.status_code != 200:
+        return render_template('index.html', companies=[], fetch_error=None, search_error="Failed to fetch data from the API")
+
+    companies = response.json()
+    # Ensure all required fields are passed to the template
+    processed_companies = [
+        {
+            'symbol': company.get('symbol'),
+            'name': company.get('name'),
+            'currency': company.get('currency'),
+            'stockExchange': company.get('stockExchange'),
+            'exchangeShortName': company.get('exchangeShortName')
+        } for company in companies
+    ]
+    return render_template('index.html', companies=processed_companies, fetch_error=None, search_error=None)
 
 @app.route('/fetch_and_save', methods=['POST'])
 def fetch_and_save():
